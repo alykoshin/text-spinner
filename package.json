@@ -1,6 +1,6 @@
 {
   "name": "text-spinner",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Spinning progress indicator for console applications",
   "main": "./index.js",
   "engines": {
@@ -32,7 +32,7 @@
     "coverall": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "keywords": [
-      "spin,spinner,spinning,progress,indicator,console"
+    "spin,spinner,spinning,progress,indicator,console"
   ],
   "author": "Alexander <alykoshin@gmail.com>",
   "license": "MIT",
@@ -44,8 +44,7 @@
     "url": "https://github.com/alykoshin/text-spinner/issues"
   },
   "homepage": "https://github.com/alykoshin/text-spinner",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "chai": "^3.4.1",
     "chai-things": "^0.2.0",
