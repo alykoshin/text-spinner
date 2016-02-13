@@ -12,7 +12,7 @@
 
 Spinning progress indicator for console applications
 
-![Simple example](https://raw.githubusercontent.com/alykoshin/text-spinner/master/doc/spinner1.gif)
+![Spinner example](https://raw.githubusercontent.com/alykoshin/text-spinner/master/doc/spinner1.gif)
 
 If you have different needs regarding the functionality, please add a [feature request](https://github.com/alykoshin/text-spinner/issues).
 
@@ -25,6 +25,74 @@ npm install --save text-spinner
 
 ## Usage
 
+```
+// Require the module and set options
+var spinner = require('../')({ 
+  interval: 100  // default value 
+}); 
+
+// Update spinner one time
+spinner.spin(); 
+```
+
+Options:
+- `interval`: minimum interval to print the spinner; if `spinner.spin()` is called several times during `interval`, spinner will be updated only once. Default: 100 (ms). 
+
+
+Example 1 (`examples/app1.js`)
+
+```
+var spinner = require('../')({ interval: 100 });
+
+setInterval(function() {
+  spinner.spin();
+}, 10); // Spinner is triggered every 10ms, but output is refreshed with 100ms (value of options.interval parameter)
+```
+
+Example 2 (`examples/app2.js`)
+
+```
+var request = require('request');
+//var spinner = require('text-spinner')({ interval: 100 });
+var spinner = require('../')({ interval: 100 });
+
+var url = 'http://mirror.internode.on.net/pub/test/5meg.test1'; // 5 MB File
+
+console.log('* Downloading test file...');
+
+request
+  .get(url)
+  .on('data', spinner.spin)
+;
+```
+
+Example 3 (`examples/app2.js`)
+
+```
+var request = require('request');
+//var spinner = require('text-spinner')({ interval: 100 });
+var spinner = require('../')({ interval: 100 });
+
+var url = 'http://mirror.internode.on.net/pub/test/5meg.test1'; // 5 MB File
+
+console.log('* Downloading test file...');
+
+request
+  .get(url)
+  .on('response', function (res) {
+    var contentLength = parseInt(res.headers[ 'content-length' ]);
+    console.log('* Download started, size: ' + (contentLength ? contentLength + ' bytes' : 'unknown') + '.'); })
+  .on('data',     function (chunk) {
+    spinner.spin();
+  })
+  .on('end',      function() {
+    console.log('* Download finished.');
+  })
+  .on('error',      function(err) {
+    console.log('* ERROR:', err);
+  })
+;
+```
 
 ## Credits
 [Alexander](https://github.com/alykoshin/)
