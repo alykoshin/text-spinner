@@ -12,6 +12,7 @@
 
 Spinning progress indicator for console applications
 
+![Simple example](alykoshin.github.com/text-spinner/doc/spinner1.jpg)
 
 If you have different needs regarding the functionality, please add a [feature request](https://github.com/alykoshin/text-spinner/issues).
 
