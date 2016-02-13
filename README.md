@@ -12,7 +12,7 @@
 
 Spinning progress indicator for console applications
 
-![Spinner example](https://raw.githubusercontent.com/alykoshin/text-spinner/master/doc/spinner1.gif)
+![Example app1.js](https://raw.githubusercontent.com/alykoshin/text-spinner/master/doc/app1.gif)
 
 If you have different needs regarding the functionality, please add a [feature request](https://github.com/alykoshin/text-spinner/issues).
 
@@ -36,25 +36,49 @@ spinner.spin();
 ```
 
 Options:
-- `interval`: minimum interval to print the spinner; if `spinner.spin()` is called several times during `interval`, spinner will be updated only once. Default: 100 (ms). 
+- `interval`- minimum interval to print the spinner; if `spinner.spin()` is called several times during `interval`, spinner will be updated only once. Default: `100` (ms). 
+- `prefix`  - prefix to print before the spinner. Default: `''`. You may set it to `'\x1B['+column+'G'` to position cursor to specific column. 
+- `postfix` - postfix to print after the spinner. Default: `\x1B[0G` (Move to start of line).
+- `auto`    - automatically rotate spinner (i.e.without calling `progress`/`rotate` methods
+- `spinner` - spinner text definition. You may look to examples/app4.js for the examples.
+
+Methods:
+- `progress()` - rotate and print spinner, but not frequently than `options.interval`  
+- `spin()`     - same as `progress()`
+- `rotate([index])` - rotate and print spinner now, not checking `options.interval`. 
+                      if `index` is set, then set index of  
+- `print()` - print spinner now at current position
+- `start()` - start auto rotation
+- `start()` - stop auto rotation
+
+Properties:
+- `active`  - status of auto rotation for spinner
 
 
-Example 1 (`examples/app1.js`)
+You may change the look of the spinner by using `spinner` option:
+
+![Example app4.js](https://raw.githubusercontent.com/alykoshin/text-spinner/master/doc/app4.gif)
+
+
+# Examples
+
+## Example 1 (`examples/app1.js`)
+Simplest example.
 
 ```
-var spinner = require('../')({ interval: 100 });
+var spinner = require('../')();
 
 setInterval(function() {
   spinner.spin();
 }, 10); // Spinner is triggered every 10ms, but output is refreshed with 100ms (value of options.interval parameter)
 ```
 
-Example 2 (`examples/app2.js`)
+## Example 2 (`examples/app2.js`)
+This is minimal example to show progress for file download. 
 
 ```
 var request = require('request');
-//var spinner = require('text-spinner')({ interval: 100 });
-var spinner = require('../')({ interval: 100 });
+var spinner = require('text-spinner')({ interval: 100 });
 
 var url = 'http://mirror.internode.on.net/pub/test/5meg.test1'; // 5 MB File
 
@@ -66,12 +90,12 @@ request
 ;
 ```
 
-Example 3 (`examples/app2.js`)
+## Example 3 (`examples/app3.js`)
+Extended version of previous example. 
 
 ```
 var request = require('request');
-//var spinner = require('text-spinner')({ interval: 100 });
-var spinner = require('../')({ interval: 100 });
+var spinner = require('text-spinner')({ interval: 100 });
 
 var url = 'http://mirror.internode.on.net/pub/test/5meg.test1'; // 5 MB File
 
@@ -93,6 +117,11 @@ request
   })
 ;
 ```
+
+## Example 4 (`examples/app4.js`)
+Example 4 shows how to customize outlook for the spinner.
+Please, refer to source of `examples/app4.js` for more info.
+
 
 ## Credits
 [Alexander](https://github.com/alykoshin/)

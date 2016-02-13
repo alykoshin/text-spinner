@@ -4,7 +4,7 @@
 
 'use strict';
 
-var spinner = require('../')({ interval: 100 });
+var spinner = require('../')({ interval: 500 });
 
 
 setInterval(function() {
