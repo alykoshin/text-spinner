@@ -49,7 +49,7 @@ Methods:
                       if `index` is set, then set index of  
 - `print()` - print spinner now at current position
 - `start()` - start auto rotation
-- `start()` - stop auto rotation
+- `stop()` - stop auto rotation
 
 Properties:
 - `active`  - status of auto rotation for spinner
